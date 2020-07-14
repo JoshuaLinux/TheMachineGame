@@ -4,8 +4,8 @@ from pygame.locals import *
 import pygame
  
 class Player:
-    x = 10
-    y = 10
+    x = 300
+    y = 300
     speed = 1
  
     def moveRight(self):
