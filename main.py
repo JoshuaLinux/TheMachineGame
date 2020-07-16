@@ -4,9 +4,9 @@ from pygame.locals import *
 import pygame
  
 class Player:
-    x = 44
-    y = 44
-    speed = 0.1
+    x = 200
+    y = 130
+    speed = 0.25
  
     def moveRight(self):
         self.x = self.x + self.speed
@@ -38,7 +38,7 @@ class Maze:
        by = 0
        for i in range(0,self.M*self.N):
            if self.maze[ bx + (by*self.M) ] == 1:
-               display_surf.blit(image_surf,( bx * 44 , by * 44))
+               display_surf.blit(image_surf,( bx * 130 , by * 130))
 
            bx = bx + 1
            if bx > self.M-1:
@@ -46,6 +46,13 @@ class Maze:
                by = by + 1
 
 
+class Game:
+    def isCollision(self,x1,x2,y1,y2,hitbox):
+            if x1 >= x2 and x1 <= x2 + hitbox:
+                if y1 >= y2 and y1 <= y2 + hitbox:
+                    return True
+                return False
+        
 class App:
 
     windowWidth = 1400
@@ -66,7 +73,8 @@ class App:
 
         pygame.display.set_caption('Pygame pythonspot.com example')
         self._running = True
-        self._image_surf = pygame.image.load("SmallCrystal.png").convert()
+        self.game = Game()
+        self._image_surf = pygame.image.load("MediumCrystal.png").convert()
         self._block_surf = pygame.image.load("Wumpa.png").convert()
 
     def on_event(self, event):
@@ -74,6 +82,10 @@ class App:
             self._running = False
 
     def on_loop(self):
+        # did player collide with surface?
+        if self.game.isCollision(self.player.x,self.player.y,self.maze.M,self.maze.M, 130):
+            
+            print('YOU LOSE!')
         pass
 
     def on_render(self):
