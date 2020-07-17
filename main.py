@@ -2,6 +2,7 @@
 
 from pygame.locals import *
 import pygame
+import numpy as np
  
 class Player:
     x = 200
@@ -25,7 +26,7 @@ class Maze:
        self.M = 10
        self.N = 8
        self.maze = [ 1,1,1,1,1,1,1,1,1,1,
-                     1,0,0,0,0,0,0,0,0,1,
+                     1,0,0,0,0,0,0,1,1,1,
                      1,0,0,0,0,0,0,0,0,1,
                      1,0,1,1,1,1,1,1,0,1,
                      1,0,1,0,0,0,0,0,0,1,
@@ -36,10 +37,16 @@ class Maze:
     def draw(self,display_surf,image_surf):
        bx = 0
        by = 0
+       WumpaArrayX = []
+       WumpaArrayY = []
        for i in range(0,self.M*self.N):
            if self.maze[ bx + (by*self.M) ] == 1:
                display_surf.blit(image_surf,( bx * 130 , by * 130))
-
+               WumpaArrayX.append(bx*130)
+               WumpaArrayY.append(by*130)
+               
+           print(WumpaArrayX)
+           print(WumpaArrayY)    
            bx = bx + 1
            if bx > self.M-1:
                bx = 0
@@ -83,9 +90,11 @@ class App:
 
     def on_loop(self):
         # did player collide with surface?
-        if self.game.isCollision(self.player.x,self.player.y,self.maze.M,self.maze.M, 130):
+        
+        if self.game.isCollision(self.player.x,self.player.y,self.maze.M,self.maze.M, 30):
             
-            print('YOU LOSE!')
+            # print(self.player.x,self.player.y)
+            print(self.maze.M)
         pass
 
     def on_render(self):
