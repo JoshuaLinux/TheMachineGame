@@ -42,11 +42,6 @@ class Maze:
        for i in range(0,self.M*self.N):
            if self.maze[ bx + (by*self.M) ] == 1:
                display_surf.blit(image_surf,( bx * 130 , by * 130))
-               WumpaArrayX.append(bx*130)
-               WumpaArrayY.append(by*130)
-               
-           print(WumpaArrayX)
-           print(WumpaArrayY)    
            bx = bx + 1
            if bx > self.M-1:
                bx = 0
@@ -104,6 +99,7 @@ class App:
         pygame.display.flip()
  
     def on_cleanup(self):
+        print(self.maze.maze)
         pygame.display.quit()
         pygame.quit()
  
