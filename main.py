@@ -33,12 +33,22 @@ class Maze:
                      1,0,1,0,1,1,1,1,0,1,
                      1,0,0,0,0,0,0,0,0,1,
                      1,1,1,1,1,1,1,1,1,1,]
+       
+       hx = 0
+       hy = 0
+       self.WumpaArrayX = []
+       self.WumpaArrayY = []
+       for i in range(0,self.M*self.N):
+           if self.maze[ hx + (hy*self.M) ] == 1:
+               pass
+           hx = hx + 1
+           if hx > self.M-1:
+               hx = 0
+               hy = hy + 1
 
     def draw(self,display_surf,image_surf):
        bx = 0
        by = 0
-       WumpaArrayX = []
-       WumpaArrayY = []
        for i in range(0,self.M*self.N):
            if self.maze[ bx + (by*self.M) ] == 1:
                display_surf.blit(image_surf,( bx * 130 , by * 130))
@@ -87,9 +97,8 @@ class App:
         # did player collide with surface?
         
         if self.game.isCollision(self.player.x,self.player.y,self.maze.M,self.maze.M, 30):
-            
+            pass
             # print(self.player.x,self.player.y)
-            print(self.maze.M)
         pass
 
     def on_render(self):
