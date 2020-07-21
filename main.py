@@ -36,15 +36,21 @@ class Maze:
        
        hx = 0
        hy = 0
+       tempx = []
+       tempy = []
        self.WumpaArrayX = []
        self.WumpaArrayY = []
+       self.WumpaArrayX.append(hx)
+       self.WumpaArrayY.append(hy)
        for i in range(0,self.M*self.N):
            if self.maze[ hx + (hy*self.M) ] == 1:
                pass
            hx = hx + 1
+           self.WumpaArrayX.append(hx)
            if hx > self.M-1:
                hx = 0
                hy = hy + 1
+               self.WumpaArrayY.append(hy)
 
     def draw(self,display_surf,image_surf):
        bx = 0
@@ -81,7 +87,7 @@ class App:
 
     def on_init(self):
         pygame.init()
-        self._display_surf = pygame.display.set_mode((1920, 1080), pygame.FULLSCREEN)
+        self._display_surf = pygame.display.set_mode((1420, 700))
 
         pygame.display.set_caption('Pygame pythonspot.com example')
         self._running = True
@@ -96,10 +102,11 @@ class App:
     def on_loop(self):
         # did player collide with surface?
         
-        if self.game.isCollision(self.player.x,self.player.y,self.maze.M,self.maze.M, 30):
+        if self.game.isCollision(self.player.x,self.player.y,400,400, 30):
+            print('YOU LOSE')
             pass
             # print(self.player.x,self.player.y)
-        pass
+        
 
     def on_render(self):
         self._display_surf.fill((0,0,0))
