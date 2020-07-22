@@ -44,13 +44,13 @@ class Maze:
        self.WumpaArrayY.append(hy)
        for i in range(0,self.M*self.N):
            if self.maze[ hx + (hy*self.M) ] == 1:
-               pass
+               self.WumpaArrayX.append(hx * 130)
+               self.WumpaArrayY.append(hy * 130)
            hx = hx + 1
-           self.WumpaArrayX.append(hx)
+           
            if hx > self.M-1:
                hx = 0
                hy = hy + 1
-               self.WumpaArrayY.append(hy)
 
     def draw(self,display_surf,image_surf):
        bx = 0
@@ -101,10 +101,8 @@ class App:
 
     def on_loop(self):
         # did player collide with surface?
-        
-        if self.game.isCollision(self.player.x,self.player.y,400,400, 30):
+        if self.game.isCollision(self.player.x,self.player.y,self.maze.WumpaArrayX,self.maze.WumpaArrayY, 30):
             print('YOU LOSE')
-            pass
             # print(self.player.x,self.player.y)
         
 
