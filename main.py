@@ -86,8 +86,9 @@ class App:
         self.maze = Maze()
 
     def on_init(self):
-        pygame.init()
-        self._display_surf = pygame.display.set_mode((1420, 700))
+        # pygame.init()
+        # self._display_surf = pygame.display.set_mode((1420, 700))
+        print(self.maze.WumpaArrayX)
 
         pygame.display.set_caption('Pygame pythonspot.com example')
         self._running = True
