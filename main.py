@@ -89,12 +89,14 @@ class App:
         # pygame.init()
         # self._display_surf = pygame.display.set_mode((1420, 700))
         print(self.maze.WumpaArrayX)
+        print(self.maze.WumpaArrayY)
+        boarders = {}
 
-        pygame.display.set_caption('Pygame pythonspot.com example')
+        # pygame.display.set_caption('Pygame pythonspot.com example')
         self._running = True
-        self.game = Game()
-        self._image_surf = pygame.image.load("MediumCrystal.png").convert()
-        self._block_surf = pygame.image.load("Wumpa.png").convert()
+        # self.game = Game()
+        # self._image_surf = pygame.image.load("MediumCrystal.png").convert()
+        # self._block_surf = pygame.image.load("Wumpa.png").convert()
 
     def on_event(self, event):
         if event.type == QUIT:
@@ -122,28 +124,29 @@ class App:
         if self.on_init() == False:
             self._running = False
  
-        while( self._running ):
-            pygame.event.pump()
-            keys = pygame.key.get_pressed()
+        # while( self._running ):
+            # pygame.event.pump()
+            # keys = pygame.key.get_pressed()
+        #     pass
             
-            if (keys[K_RIGHT]):
-                self.player.moveRight()
+        #     if (keys[K_RIGHT]):
+        #         self.player.moveRight()
  
-            if (keys[K_LEFT]):
-                self.player.moveLeft()
+        #     if (keys[K_LEFT]):
+        #         self.player.moveLeft()
  
-            if (keys[K_UP]):
-                self.player.moveUp()
+        #     if (keys[K_UP]):
+        #         self.player.moveUp()
  
-            if (keys[K_DOWN]):
-                self.player.moveDown()
+        #     if (keys[K_DOWN]):
+        #         self.player.moveDown()
  
-            if (keys[K_ESCAPE]):
-                self._running = False
+        #     if (keys[K_ESCAPE]):
+        #         self._running = False
  
-            self.on_loop()
-            self.on_render()
-        self.on_cleanup()
+        #     self.on_loop()
+        #     self.on_render()
+        # self.on_cleanup()
  
 if __name__ == "__main__" :
     theApp = App()
