@@ -88,8 +88,8 @@ class App:
     def on_init(self):
         # pygame.init()
         # self._display_surf = pygame.display.set_mode((1420, 700))
-        print(self.maze.WumpaArrayX)
-        print(self.maze.WumpaArrayY)
+        print(self.maze.WumpaArrayX[0:10])
+        print(self.maze.WumpaArrayY[0:10])
         boarders = {}
 
         # pygame.display.set_caption('Pygame pythonspot.com example')
