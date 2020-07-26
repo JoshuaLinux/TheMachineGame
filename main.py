@@ -66,10 +66,10 @@ class Maze:
 
 class Game:
     def isCollision(self,x1,x2,y1,y2,hitbox):
-            if x1 >= x2 and x1 <= x2 + hitbox:
-                if y1 >= y2 and y1 <= y2 + hitbox:
-                    return True
-                return False
+        if x1 >= x2 and x1 <= x2 + hitbox:
+            if y1 >= y2 and y1 <= y2 + hitbox:
+                return True
+            return False
         
 class App:
 
@@ -86,17 +86,15 @@ class App:
         self.maze = Maze()
 
     def on_init(self):
-        # pygame.init()
-        # self._display_surf = pygame.display.set_mode((1420, 700))
-        print(self.maze.WumpaArrayX[0:10])
-        print(self.maze.WumpaArrayY[0:10])
+        pygame.init()
+        self._display_surf = pygame.display.set_mode((1420, 700))
         boarders = {}
 
-        # pygame.display.set_caption('Pygame pythonspot.com example')
+        pygame.display.set_caption('Pygame pythonspot.com example')
         self._running = True
-        # self.game = Game()
-        # self._image_surf = pygame.image.load("MediumCrystal.png").convert()
-        # self._block_surf = pygame.image.load("Wumpa.png").convert()
+        self.game = Game()
+        self._image_surf = pygame.image.load("MediumCrystal.png").convert()
+        self._block_surf = pygame.image.load("Wumpa.png").convert()
 
     def on_event(self, event):
         if event.type == QUIT:
@@ -104,9 +102,10 @@ class App:
 
     def on_loop(self):
         # did player collide with surface?
-        if self.game.isCollision(self.player.x,self.player.y,self.maze.WumpaArrayX,self.maze.WumpaArrayY, 30):
-            print('YOU LOSE')
-            # print(self.player.x,self.player.y)
+            if self.game.isCollision(self.player.x,self.maze.WumpaArrayX[2], self.player.y, self.maze.WumpaArrayY[2], 90):
+                print('You LOSE')
+                exit(0)
+                # print(self.player.x,self.player.y)
         
 
     def on_render(self):
@@ -124,29 +123,29 @@ class App:
         if self.on_init() == False:
             self._running = False
  
-        # while( self._running ):
-            # pygame.event.pump()
-            # keys = pygame.key.get_pressed()
-        #     pass
+        while( self._running ):
+            pygame.event.pump()
+            keys = pygame.key.get_pressed()
+            pass
             
-        #     if (keys[K_RIGHT]):
-        #         self.player.moveRight()
+            if (keys[K_RIGHT]):
+                self.player.moveRight()
  
-        #     if (keys[K_LEFT]):
-        #         self.player.moveLeft()
+            if (keys[K_LEFT]):
+                self.player.moveLeft()
  
-        #     if (keys[K_UP]):
-        #         self.player.moveUp()
+            if (keys[K_UP]):
+                self.player.moveUp()
  
-        #     if (keys[K_DOWN]):
-        #         self.player.moveDown()
+            if (keys[K_DOWN]):
+                self.player.moveDown()
  
-        #     if (keys[K_ESCAPE]):
-        #         self._running = False
+            if (keys[K_ESCAPE]):
+                self._running = False
  
-        #     self.on_loop()
-        #     self.on_render()
-        # self.on_cleanup()
+            self.on_loop()
+            self.on_render()
+        self.on_cleanup()
  
 if __name__ == "__main__" :
     theApp = App()
