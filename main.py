@@ -6,8 +6,8 @@ import numpy as np
  
 class Player:
     x = 200
-    y = 130
-    speed = 0.25
+    y = 150
+    speed = 0.75
  
     def moveRight(self):
         self.x = self.x + self.speed
@@ -57,7 +57,7 @@ class Maze:
        by = 0
        for i in range(0,self.M*self.N):
            if self.maze[ bx + (by*self.M) ] == 1:
-               display_surf.blit(image_surf,( bx * 130 , by * 130))
+               display_surf.blit(image_surf,( bx * 120 , by * 120))
            bx = bx + 1
            if bx > self.M-1:
                bx = 0
@@ -102,7 +102,8 @@ class App:
 
     def on_loop(self):
         # did player collide with surface?
-            if self.game.isCollision(self.player.x,self.maze.WumpaArrayX[2], self.player.y, self.maze.WumpaArrayY[2], 90):
+        for i in range(len(self.maze.WumpaArrayX)):
+            if self.game.isCollision(self.player.x,self.maze.WumpaArrayX[i], self.player.y, self.maze.WumpaArrayY[i], 90):
                 print('You LOSE')
                 exit(0)
                 # print(self.player.x,self.player.y)
