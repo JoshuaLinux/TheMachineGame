@@ -7,6 +7,8 @@ import numpy as np
 class Player:
     x = 200
     y = 150
+    x2 = 400
+    y2 = 300
     speed = 0.75
  
     def moveRight(self):
