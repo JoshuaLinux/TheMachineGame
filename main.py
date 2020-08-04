@@ -33,7 +33,7 @@ class Maze:
                      1,0,1,1,1,1,1,1,0,1,
                      1,0,1,0,0,0,0,0,0,1,
                      1,0,1,0,1,1,1,1,0,1,
-                     1,0,0,0,0,0,0,0,1,1,
+                     1,1,0,0,0,0,0,1,1,1,
                      1,1,1,1,1,1,1,1,1,1,]
        
        hx = 0
@@ -46,8 +46,8 @@ class Maze:
        self.WumpaArrayY.append(hy)
        for i in range(0,self.M*self.N):
            if self.maze[ hx + (hy*self.M) ] == 1:
-               self.WumpaArrayX.append(hx * 130)
-               self.WumpaArrayY.append(hy * 130)
+               self.WumpaArrayX.append(hx * 120)
+               self.WumpaArrayY.append(hy * 80)
            hx = hx + 1
            
            if hx > self.M-1:
@@ -59,7 +59,7 @@ class Maze:
        by = 0
        for i in range(0,self.M*self.N):
            if self.maze[ bx + (by*self.M) ] == 1:
-               display_surf.blit(image_surf,( bx * 120 , by * 120))
+               display_surf.blit(image_surf,( bx * 120 , by * 80))
            bx = bx + 1
            if bx > self.M-1:
                bx = 0
