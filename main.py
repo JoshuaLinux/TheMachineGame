@@ -46,8 +46,8 @@ class Maze:
        self.WumpaArrayY.append(hy)
        for i in range(0,self.M*self.N):
            if self.maze[ hx + (hy*self.M) ] == 1:
-               self.WumpaArrayX.append(hx * 120)
-               self.WumpaArrayY.append(hy * 80)
+               self.WumpaArrayX.append(hx * 130)
+               self.WumpaArrayY.append(hy * 130)
            hx = hx + 1
            
            if hx > self.M-1:
@@ -59,7 +59,7 @@ class Maze:
        by = 0
        for i in range(0,self.M*self.N):
            if self.maze[ bx + (by*self.M) ] == 1:
-               display_surf.blit(image_surf,( bx * 120 , by * 80))
+               display_surf.blit(image_surf,( bx * 130 , by * 130))
            bx = bx + 1
            if bx > self.M-1:
                bx = 0
@@ -105,7 +105,7 @@ class App:
     def on_loop(self):
         # did player collide with surface?
         for i in range(len(self.maze.WumpaArrayX)):
-            if self.game.isCollision(self.player.x,self.maze.WumpaArrayX[i], self.player.y, self.maze.WumpaArrayY[i], 90):
+            if self.game.isCollision(self.player.x,self.maze.WumpaArrayX[i], self.player.y, self.maze.WumpaArrayY[i], 130):
                 print('You LOSE')
                 exit(0)
                 # print(self.player.x,self.player.y)
