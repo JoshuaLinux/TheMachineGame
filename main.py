@@ -105,7 +105,7 @@ class App:
     def on_loop(self):
         # did player collide with surface?
         for i in range(len(self.maze.WumpaArrayX)):
-            if self.game.isCollision(self.player.x,self.maze.WumpaArrayX[i], self.player.y, self.maze.WumpaArrayY[i], 130):
+            if self.game.isCollision(self.player.x,190, self.player.y, 190, 130):
                 print('You LOSE')
                 exit(0)
                 # print(self.player.x,self.player.y)
