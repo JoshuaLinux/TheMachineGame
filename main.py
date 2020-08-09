@@ -27,6 +27,8 @@ class Maze:
     def __init__(self):
        self.M = 11
        self.N = 8
+       #Create a goal for the game
+       
        self.maze = [ 1,1,1,1,1,1,1,1,1,1,1,
                      1,0,0,0,0,0,0,1,1,1,1,
                      1,0,0,0,0,1,0,0,0,1,1,
@@ -48,11 +50,16 @@ class Maze:
            if self.maze[ hx + (hy*self.M) ] == 1:
                self.WumpaArrayX.append(hx * 130)
                self.WumpaArrayY.append(hy * 130)
+           elif self.maze[ hx + (hy*self.M) ] == 1:
+               pass #goal will be here
            hx = hx + 1
+
            
            if hx > self.M-1:
                hx = 0
                hy = hy + 1
+               
+
 
     def draw(self,display_surf,image_surf):
        bx = 0
@@ -108,7 +115,6 @@ class App:
             if self.game.isCollision(self.player.x,190, self.player.y, 190, 130):
                 print('You LOSE')
                 exit(0)
-                # print(self.player.x,self.player.y)
         
 
     def on_render(self):
@@ -118,7 +124,6 @@ class App:
         pygame.display.flip()
  
     def on_cleanup(self):
-        print(self.maze.maze)
         pygame.display.quit()
         pygame.quit()
  
