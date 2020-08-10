@@ -9,7 +9,7 @@ class Player:
     y = 150
     x2 = 400
     y2 = 300
-    speed = 0.75
+    speed = 0.45
  
     def moveRight(self):
         self.x = self.x + self.speed
@@ -50,8 +50,8 @@ class Maze:
            if self.maze[ hx + (hy*self.M) ] == 1:
                self.WumpaArrayX.append(hx * 130)
                self.WumpaArrayY.append(hy * 130)
-           elif self.maze[ hx + (hy*self.M) ] == 1:
-               pass #goal will be here
+           elif self.maze[ hx + (hy*self.M) ] == 2:
+               print('YOU WIN!')
            hx = hx + 1
 
            
@@ -61,7 +61,7 @@ class Maze:
                
 
 
-    def draw(self,display_surf,image_surf):
+    def draw(self,display_surf,image_surf,dot_surf):
        bx = 0
        by = 0
        for i in range(0,self.M*self.N):
@@ -75,8 +75,8 @@ class Maze:
 
 class Game:
     def isCollision(self,x1,x2,y1,y2,hitbox):
-        if x1 >= x2 and x1 <= x2 + hitbox:
-            if y1 >= y2 and y1 <= y2 + hitbox:
+        if x2 >= x1 and x2 <= x1 + hitbox:
+            if y2 >= y1 and y2 <= y1 + hitbox:
                 return True
             return False
         
@@ -91,6 +91,7 @@ class App:
         self._display_surf = None
         self._image_surf = None
         self._block_surf = None
+        self._dot_surf = None
         self.player = Player()
         self.maze = Maze()
 
@@ -102,8 +103,9 @@ class App:
         pygame.display.set_caption('Pygame pythonspot.com example')
         self._running = True
         self.game = Game()
-        self._image_surf = pygame.image.load("MediumCrystal.png").convert()
-        self._block_surf = pygame.image.load("Wumpa.png").convert()
+        self._image_surf = pygame.image.load("Pixel.png").convert()
+        self._block_surf = pygame.image.load("Pixel.png").convert()
+        self._dot_surf = pygame.image.load("Pixel.png").convert()
 
     def on_event(self, event):
         if event.type == QUIT:
@@ -112,7 +114,7 @@ class App:
     def on_loop(self):
         # did player collide with surface?
         for i in range(len(self.maze.WumpaArrayX)):
-            if self.game.isCollision(self.player.x,190, self.player.y, 190, 130):
+            if self.game.isCollision(self.maze.WumpaArrayX[i], self.player.x, self.maze.WumpaArrayY[i], self.player.y, 80):
                 print('You LOSE')
                 exit(0)
         
@@ -120,7 +122,7 @@ class App:
     def on_render(self):
         self._display_surf.fill((0,0,0))
         self._display_surf.blit(self._image_surf,(self.player.x,self.player.y))
-        self.maze.draw(self._display_surf, self._block_surf)
+        self.maze.draw(self._display_surf, self._block_surf, self._dot_surf)
         pygame.display.flip()
  
     def on_cleanup(self):
